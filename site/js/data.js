@@ -108,10 +108,7 @@ const VIDEOS = [
   { src:'assets/video/hero-1.mp4', poster:'assets/video/posters/hero-1.jpg' },
   { src:'assets/video/hero-2.mp4', poster:'assets/video/posters/hero-2.jpg' },
   { src:'assets/video/hero-3.mp4', poster:'assets/video/posters/hero-3.jpg' },
-  { src:'assets/video/hero-4.mp4', poster:'assets/video/posters/hero-4.jpg' },
-  { src:'assets/video/hero-5.mp4', poster:'assets/video/posters/hero-5.jpg' },
-  { src:'assets/video/hero-6.mp4', poster:'assets/video/posters/hero-6.jpg' },
-  { src:'assets/video/hero-7.mp4', poster:'assets/video/posters/hero-7.jpg' }
+  { src:'assets/video/hero-4.mp4', poster:'assets/video/posters/hero-4.jpg' }
 ];
 
 /* Communauté Instagram — @pellmaro_officiel (15K abonnés · 185 publications) */
