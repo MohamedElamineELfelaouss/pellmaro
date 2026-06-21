@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pellmaro — Le cuir marocain, version moderne</title>
+<meta name="description" content="Sabots et sandales en cuir suède. Cuir travaillé au Maroc, semelles fabriquées en Espagne. Paiement à la livraison partout au Maroc." />
+<link rel="icon" href="assets/img/Capture_d_ecran_2026-01-29_a_15.24.56-removebg-preview_1e03cafd-f37f-4482-a172-f7a7c50746de.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css?v=6" />
+</head>
+<body>
+
+<!-- Announcement -->
+<div class="announce">
+  <div class="announce__track" id="announceTrack"></div>
+</div>
+
+<!-- Header -->
+<header class="header" id="header">
+  <button class="icon-btn header__menu" aria-label="Menu" id="menuBtn">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+  <nav class="header__nav">
+    <a href="#collection">Sabots</a>
+    <a href="#sandales">Sandales</a>
+    <a href="#story">La marque</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a href="#top" class="header__logo">
+    <img src="assets/img/Capture_d_ecran_2026-01-29_a_15.24.56-removebg-preview_1e03cafd-f37f-4482-a172-f7a7c50746de.png" alt="Pellmaro" />
+  </a>
+  <div class="header__actions">
+    <a href="https://wa.me/212640200728" target="_blank" rel="noopener" class="icon-btn" aria-label="WhatsApp" title="WhatsApp">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="currentColor"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.45 1.33 4.95L2.05 22l5.3-1.39a9.86 9.86 0 0 0 4.69 1.19h.004c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2Zm0 18.05h-.004a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.11.82.83-3.03-.2-.31a8.13 8.13 0 0 1-1.25-4.34c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01a.92.92 0 0 0-.67.31c-.23.25-.88.86-.88 2.1 0 1.24.9 2.43 1.03 2.6.12.17 1.77 2.71 4.3 3.8.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+    </a>
+    <button class="icon-btn" aria-label="Recherche"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+    <button class="icon-btn cart-btn" id="cartBtn" aria-label="Panier">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav__close" id="mobileClose" aria-label="Fermer">&times;</button>
+  <a href="#collection">Sabots</a>
+  <a href="#sandales">Sandales</a>
+  <a href="#story">La marque</a>
+  <a href="#process">Fabrication</a>
+  <a href="#faq">FAQ</a>
+  <a href="https://wa.me/212640200728" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__grain" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <div class="hero__copy">
+      <span class="eyebrow eyebrow--line">Cuir marocain · semelle espagnole</span>
+      <h1>Le cuir marocain,<br><em>version moderne.</em></h1>
+      <p>Des mules en cuir suède façonnées à la main au Maroc — confort immédiat, allure nette, finitions soignées.</p>
+      <div class="hero__cta">
+        <a href="#collection" class="btn btn--solid">Découvrir la collection</a>
+        <a href="#story" class="btn btn--ghost">Notre histoire</a>
+      </div>
+      <div class="hero__chips">
+        <span class="chip"><b>★ 4,9/5</b> satisfaction</span>
+        <span class="chip"><b>15K</b> abonnés</span>
+        <span class="chip">Paiement à la livraison</span>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <span class="hero__blob" aria-hidden="true"></span>
+      <figure class="hero__card">
+        <img src="assets/img/2.png" alt="Mules Pellmaro en daim bleu marine" />
+      </figure>
+      <div class="hero__tag hero__tag--price"><span>À partir de</span><strong>389 dh</strong></div>
+      <div class="hero__tag hero__tag--rate"><b>★★★★★</b><span>+2 000 clients au Maroc</span></div>
+      <div class="hero__swatches" aria-hidden="true">
+        <i style="--c:#1a1a1a"></i><i style="--c:#26344d"></i><i style="--c:#6b6a3a"></i><i style="--c:#cbb487"></i><i style="--c:#c9a3c9"></i>
+      </div>
+    </div>
+  </div>
+  <a href="#collection" class="hero__scroll" aria-label="Défiler vers la collection"><span></span></a>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trustbar">
+  <div class="trustbar__item"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v6c0 5-3.8 8.4-9 9-5.2-.6-9-4-9-9V7Z"/><path d="m8.5 12 2.2 2.2L16 9"/></svg><div><strong>Cuir sélectionné</strong><span>souple, durable, belle patine</span></div></div>
+  <div class="trustbar__item"><svg viewBox="0 0 24 24"><path d="M4 17h16M6 17l1.5-9h9L18 17M9 8V6a3 3 0 0 1 6 0v2"/></svg><div><strong>Semelle fabriquée en Espagne</strong><span>stabilité &amp; confort</span></div></div>
+  <div class="trustbar__item"><svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 8 10 8 10s8-5 8-10V6l-8-4Z"/></svg><div><strong>Finitions m3alam au Maroc</strong><span>coupe précise, piqûres soignées</span></div></div>
+  <div class="trustbar__item"><svg viewBox="0 0 24 24"><path d="M3 7h13v8H3zM16 10h3l2 3v2h-5z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17.5" cy="17" r="1.6"/></svg><div><strong>Paiement à la livraison</strong><span>payez en recevant</span></div></div>
+</section>
+
+<!-- COLLECTION : SABOTS -->
+<section class="section" id="collection">
+  <div class="section__head">
+    <span class="eyebrow">Best-sellers</span>
+    <h2>Les essentiels Pellmaro</h2>
+    <p>Nos modèles iconiques en suède, ceux que vous porterez le plus.</p>
+  </div>
+  <div class="grid" id="gridSabots"></div>
+</section>
+
+<!-- EDITORIAL SPLIT -->
+<section class="split">
+  <div class="split__media"><img src="assets/img/nature-du-acuir.png" alt="Détail du cuir Pellmaro" /></div>
+  <div class="split__text">
+    <span class="eyebrow">La matière</span>
+    <h2>Un cuir choisi pour durer</h2>
+    <p>Nous sélectionnons des cuirs pour leur souplesse, leur tenue et leur capacité à bien vieillir. Le confort est immédiat, sans rigidité, dès les premiers pas.</p>
+    <ul class="ticks">
+      <li>Cuir &amp; daim travaillés au Maroc par des artisans</li>
+      <li>Semelles fabriquées en Espagne pour le confort</li>
+      <li>Une patine qui s'embellit avec le temps</li>
+    </ul>
+    <a href="#collection" class="link-arrow">Voir les modèles →</a>
+  </div>
+</section>
+
+<!-- COLLECTION : SANDALES -->
+<section class="section section--alt" id="sandales">
+  <div class="section__head">
+    <span class="eyebrow">Nouveauté été</span>
+    <h2>La collection Sandales</h2>
+    <p>Le même savoir-faire, en version légère pour les beaux jours.</p>
+  </div>
+  <div class="grid grid--2" id="gridSandales"></div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process" id="process">
+  <div class="section__head">
+    <span class="eyebrow">Savoir-faire</span>
+    <h2>Le process qui fait la différence</h2>
+    <p>On ne vend pas une photo. On livre un produit fini, construit étape par étape.</p>
+  </div>
+  <div class="process__wrap">
+    <div class="process__video">
+      <video src="assets/video/ig-3.mp4" poster="assets/video/posters/ig-3.jpg" muted loop playsinline preload="metadata"></video>
+      <span class="process__badge"><span class="dot-live"></span>L'atelier, en vidéo</span>
+    </div>
+    <ol class="steps steps--timeline">
+      <li><span>01</span><strong>Sélection des matières</strong><p>Cuir, semelles, renforts choisis un à un.</p></li>
+      <li><span>02</span><strong>Base semelle</strong><p>Préparée pour un montage précis.</p></li>
+      <li><span>03</span><strong>Découpe design</strong><p>Chaque pièce à sa place.</p></li>
+      <li><span>04</span><strong>Préparation</strong><p>Collage et alignements.</p></li>
+      <li><span>05</span><strong>Couture</strong><p>Régularité visible au premier regard.</p></li>
+      <li><span>06</span><strong>Montage final</strong><p>Assemblage cuir / semelle.</p></li>
+      <li><span>07</span><strong>Finition</strong><p>Pression + traitement du cuir.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- VIDEO REEL -->
+<section class="reel" id="reel">
+  <div class="section__head section__head--light">
+    <span class="eyebrow">En mouvement</span>
+    <h2>Pellmaro porté au quotidien</h2>
+  </div>
+  <div class="reel__track" id="reelTrack"></div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story__text">
+    <span class="eyebrow">La marque</span>
+    <h2>Pellmaro revisite le cuir marocain</h2>
+    <p>Une approche sobre et actuelle : des modèles bien dessinés, des matières sélectionnées, une fabrication soignée. Les cuirs sont travaillés au Maroc par des artisans expérimentés, associés à des semelles fabriquées en Espagne pour le confort et la durabilité.</p>
+    <p>Chaque paire est pensée pour être portée souvent, longtemps, sans jamais en faire trop.</p>
+    <a href="#collection" class="btn btn--solid">Choisir ma paire</a>
+  </div>
+  <div class="story__media"><img src="assets/img/ChatGPT_Image_Feb_15_2026_06_42_45_PM.png" alt="L'atelier Pellmaro" /></div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section reviews" id="reviews">
+  <div class="section__head">
+    <span class="eyebrow">★★★★★ 4,9/5</span>
+    <h2>Ils ont adopté Pellmaro</h2>
+    <p>Plus de 2 000 clients au Maroc, et des retours qui parlent d'eux-mêmes.</p>
+  </div>
+  <div class="reviews__grid" id="reviewsGrid"></div>
+</section>
+
+<!-- INSTAGRAM / UGC -->
+<section class="section insta" id="insta">
+  <div class="section__head">
+    <span class="eyebrow">@pellmaro_officiel · 15K abonnés</span>
+    <h2>Ils portent Pellmaro</h2>
+    <p>Une communauté de plus de 15 000 personnes au Maroc. Taguez <strong>@pellmaro_officiel</strong> pour apparaître ici.</p>
+    <a href="https://www.instagram.com/pellmaro_officiel" target="_blank" rel="noopener" class="btn btn--ghost insta__follow">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      Suivre sur Instagram
+    </a>
+  </div>
+  <div class="insta__grid" id="instaGrid"></div>
+</section>
+
+<!-- GUARANTEES -->
+<section class="guarantees">
+  <div><svg viewBox="0 0 24 24"><path d="M3 7h13v8H3zM16 10h3l2 3v2h-5z"/><circle cx="7" cy="17" r="1.6"/><circle cx="17.5" cy="17" r="1.6"/></svg><strong>Paiement à la livraison</strong><span>Payez uniquement à réception.</span></div>
+  <div><svg viewBox="0 0 24 24"><path d="M3 7h13v8H3zM16 10h3l2 3v2h-5z"/></svg><strong>Livraison 24–72h</strong><span>Partout au Maroc, selon la ville.</span></div>
+  <div><svg viewBox="0 0 24 24"><path d="M7 7h10v3l4-3v9l-4-3v3H7z"/></svg><strong>Échange facile</strong><span>La taille ne va pas ? On échange.</span></div>
+  <div><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><strong>Service local</strong><span>Équipe au Maroc, 7j/7.</span></div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq" id="faq">
+  <div class="section__head"><span class="eyebrow">Questions fréquentes</span><h2>Tout ce qu'il faut savoir</h2></div>
+  <div class="faq__list">
+    <details><summary>Comment fonctionne le paiement à la livraison ?<i></i></summary><p>Vous payez uniquement à la réception de votre commande, en espèces, directement au livreur.</p></details>
+    <details><summary>Quels sont les délais de livraison ?<i></i></summary><p>Entre 24 et 72h selon votre ville, partout au Maroc.</p></details>
+    <details><summary>Puis-je échanger si la taille ne convient pas ?<i></i></summary><p>Oui. L'échange est simple, rapide et gratuit sous 7 jours.</p></details>
+    <details><summary>D'où viennent les produits ?<i></i></summary><p>Le cuir est travaillé au Maroc par des artisans ; les semelles sont fabriquées en Espagne.</p></details>
+    <details><summary>Comment choisir ma pointure ?<i></i></summary><p>Nos modèles taillent normalement (36 à 46). En cas de doute entre deux tailles, prenez la plus grande.</p></details>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <h2>Recevez nos nouveautés</h2>
+  <p>Nouvelles collections, modèles à venir et offres réservées.</p>
+  <form class="newsletter__form" onsubmit="event.preventDefault();this.reset();this.querySelector('button').textContent='Inscrit ✓';">
+    <input type="email" placeholder="Votre e-mail" required />
+    <button type="submit">S'inscrire</button>
+  </form>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <img src="assets/img/Capture_d_ecran_2026-01-29_a_15.24.56-removebg-preview_1e03cafd-f37f-4482-a172-f7a7c50746de.png" alt="Pellmaro" />
+      <p>Le cuir marocain, version moderne. Cuir travaillé au Maroc, semelle fabriquée en Espagne.</p>
+      <div class="footer__social">
+        <a href="https://www.instagram.com/pellmaro_officiel" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61586827037375" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M13 22v-8h2.6l.4-3H13V9c0-.9.3-1.5 1.6-1.5H16V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.8 1.4-3.8 3.9V11H7.5v3H10v8h3Z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer__col"><h4>Boutique</h4><a href="#collection">Sabots</a><a href="#sandales">Sandales</a><a href="#reviews">Avis clients</a></div>
+    <div class="footer__col"><h4>Aide</h4><a href="#faq">FAQ</a><a href="https://wa.me/212640200728" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:contact@pellmaro.ma">Contact</a></div>
+    <div class="footer__col">
+      <h4>Contact</h4>
+      <a href="mailto:contact@pellmaro.ma">contact@pellmaro.ma</a>
+      <a href="https://wa.me/212640200728" target="_blank" rel="noopener">+212 640 200 728</a>
+      <span class="muted">Disponible 24h/24 · 7j/7</span>
+    </div>
+  </div>
+  <div class="footer__bar"><span>© 2026 Pellmaro</span><span class="muted"><a href="admin.html" style="color:var(--sand)">Espace commandes</a> · Conçu comme une démo — par votre développeur full-stack.</span></div>
+</footer>
+
+<!-- CART DRAWER -->
+<aside class="drawer" id="cartDrawer">
+  <div class="drawer__head"><h3>Votre panier</h3><button id="cartClose" class="drawer__close" aria-label="Fermer">&times;</button></div>
+  <div class="drawer__body" id="cartItems"></div>
+  <div class="drawer__foot" id="cartFoot">
+    <div class="drawer__total"><span>Total</span><strong id="cartTotal">0 dh</strong></div>
+    <p class="drawer__note">Paiement à la livraison · Livraison 24–72h</p>
+    <button class="btn btn--solid btn--full" id="checkoutBtn">Commander</button>
+  </div>
+</aside>
+
+<!-- QUICK VIEW / PRODUCT MODAL -->
+<div class="modal" id="productModal">
+  <div class="modal__panel">
+    <button class="modal__close" id="modalClose" aria-label="Fermer">&times;</button>
+    <div class="modal__gallery">
+      <img id="pvMain" src="" alt="" />
+      <div class="modal__thumbs" id="pvThumbs"></div>
+    </div>
+    <div class="modal__info">
+      <span class="badge" id="pvBadge"></span>
+      <h3 id="pvName"></h3>
+      <div class="modal__price"><span class="now" id="pvPrice"></span><span class="was" id="pvCompare"></span><span class="off" id="pvOff"></span></div>
+      <div class="stars">★★★★★ <span class="muted">(4,9/5 · 312 avis)</span></div>
+      <p class="modal__desc">Sabot en cuir suède, finitions m3alam au Maroc, semelle fabriquée en Espagne. Confortable dès les premiers pas.</p>
+      <div class="field"><label>Pointure</label><div class="sizes" id="pvSizes"></div></div>
+      <button class="btn btn--solid btn--full" id="pvAdd">Ajouter au panier</button>
+      <button class="btn btn--ghost btn--full" id="pvBuy">Commander maintenant</button>
+      <ul class="modal__assur"><li>✓ Paiement à la livraison</li><li>✓ Livraison 24–72h</li><li>✓ Échange gratuit</li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- COD ORDER MODAL -->
+<div class="modal modal--narrow" id="orderModal">
+  <div class="modal__panel modal__panel--form">
+    <button class="modal__close" id="orderClose" aria-label="Fermer">&times;</button>
+    <h3>Finaliser la commande</h3>
+    <p class="muted">Paiement à la livraison — remplissez vos coordonnées, on vous rappelle pour confirmer.</p>
+    <div class="order__summary" id="orderSummary"></div>
+    <form id="orderForm" class="order__form">
+      <input required name="name" placeholder="Nom complet" />
+      <input required name="phone" type="tel" placeholder="Téléphone (WhatsApp)" />
+      <input required name="city" placeholder="Ville" />
+      <textarea required name="address" placeholder="Adresse de livraison" rows="2"></textarea>
+      <div class="order__total"><span>Total à payer à la livraison</span><strong id="orderTotal">0 dh</strong></div>
+      <button class="btn btn--solid btn--full" type="submit">Confirmer ma commande</button>
+      <p class="order__success" id="orderSuccess">✓ Votre commande s'ouvre sur WhatsApp — appuyez sur « Envoyer » pour la confirmer. Notre équipe vous rappelle ensuite.</p>
+    </form>
+  </div>
+</div>
+
+<div class="demo-badge" title="Maquette de démonstration — propriété de [Votre nom]. Non affiliée à Pellmaro.">Démo · concept</div>
+
+<a href="https://wa.me/212640200728" target="_blank" rel="noopener" class="wa-float" aria-label="Commander sur WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.46 3.45 1.33 4.95L2.05 22l5.3-1.39a9.86 9.86 0 0 0 4.69 1.19c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2Zm4.52 11.89c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48a.92.92 0 0 0-.67.31c-.23.25-.88.86-.88 2.1 0 1.24.9 2.43 1.03 2.6.12.17 1.77 2.71 4.3 3.8.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
+</a>
+
+<script src="js/data.js?v=5"></script>
+<script src="js/app.js?v=5"></script>
+</body>
+</html>

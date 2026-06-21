@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pellmaro — Espace commandes</title>
+<link rel="icon" href="assets/img/Capture_d_ecran_2026-01-29_a_15.24.56-removebg-preview_1e03cafd-f37f-4482-a172-f7a7c50746de.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{--sand:#baad83;--sand-d:#9c8f63;--ink:#121212;--cream:#f6f3ec;--cream-2:#efeae0;--line:#e7e1d4;
+  --paper:#fff;--radius:16px;--shadow:0 18px 50px -26px rgba(18,18,18,.3);--shadow-sm:0 8px 24px -16px rgba(18,18,18,.3);
+  --ff-body:'Barlow',system-ui,sans-serif;--ff-head:'Fraunces',serif;
+  --s-new:#b9791f;--s-new-bg:#fbf0dd;--s-conf:#2a6bb0;--s-conf-bg:#e4eefa;
+  --s-exp:#5b4bb3;--s-exp-bg:#ebe8fa;--s-liv:#2f7d46;--s-liv-bg:#e6f4ea;--s-ann:#b23a2f;--s-ann-bg:#fbe7e4;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--ff-body);background:var(--cream);color:var(--ink);font-weight:500;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--ff-head);font-weight:600;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+
+/* Topbar */
+.top{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.top__in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:1rem;padding:.9rem clamp(1rem,3vw,2rem)}
+.top__logo{height:42px}
+.top__t{display:flex;flex-direction:column;line-height:1.1}
+.top__t b{font-family:var(--ff-head);font-size:1.15rem}
+.top__t span{font-size:.72rem;color:#8c857a;letter-spacing:.04em}
+.top__right{margin-left:auto;display:flex;align-items:center;gap:.7rem}
+.top__link{font-size:.86rem;font-weight:600;color:var(--sand-d);padding:.5rem .9rem;border-radius:100px;border:1px solid var(--line);transition:.2s}
+.top__link:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.wrap{max-width:1240px;margin:0 auto;padding:clamp(1.2rem,3vw,2.2rem) clamp(1rem,3vw,2rem)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.6rem}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:1.3rem 1.4rem;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.stat__ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:var(--cream-2);margin-bottom:.9rem}
+.stat__ic svg{width:20px;height:20px;stroke:var(--sand-d);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.stat__v{font-family:var(--ff-head);font-size:1.9rem;line-height:1}
+.stat__l{font-size:.8rem;color:#8c857a;margin-top:.3rem;letter-spacing:.02em}
+.stat--accent{background:linear-gradient(135deg,#1c1a17,#2c2823);color:#fff}
+.stat--accent .stat__ic{background:rgba(255,255,255,.1)}
+.stat--accent .stat__ic svg{stroke:var(--sand)}
+.stat--accent .stat__l{color:#cfc8b9}
+
+/* Toolbar */
+.toolbar{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-bottom:1.1rem}
+.search{flex:1;min-width:200px;position:relative}
+.search input{width:100%;padding:.75rem 1rem .75rem 2.4rem;border:1px solid var(--line);border-radius:100px;background:var(--paper);font-family:var(--ff-body);font-size:.9rem}
+.search input:focus{outline:none;border-color:var(--sand-d)}
+.search svg{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);width:17px;height:17px;stroke:#a59f93;fill:none;stroke-width:1.8}
+.sel{padding:.75rem 1rem;border:1px solid var(--line);border-radius:100px;background:var(--paper);font-family:var(--ff-body);font-size:.88rem;font-weight:600;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--ff-body);font-weight:700;font-size:.88rem;padding:.75rem 1.3rem;border-radius:100px;border:1.5px solid transparent;cursor:pointer;transition:.18s}
+.btn--solid{background:var(--ink);color:#fff}
+.btn--solid:hover{background:var(--sand-d)}
+.btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8}
+
+/* Table */
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+thead th{text-align:left;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#8c857a;font-weight:700;padding:.95rem 1rem;border-bottom:1px solid var(--line);background:var(--cream)}
+tbody td{padding:1rem;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#fcfbf8}
+.c-id{font-weight:700}
+.c-id small{display:block;color:#a59f93;font-weight:500;font-size:.74rem;margin-top:.15rem}
+.c-client b{font-weight:600}
+.c-client small{display:block;color:#8c857a;font-size:.78rem;margin-top:.1rem}
+.c-items{max-width:240px;color:#5f5950;font-size:.84rem}
+.c-total{font-weight:800;white-space:nowrap}
+.status{appearance:none;border:none;border-radius:100px;padding:.4rem 1.7rem .4rem .8rem;font-family:var(--ff-body);font-weight:700;font-size:.78rem;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .7rem center}
+.st-Nouvelle{color:var(--s-new);background-color:var(--s-new-bg)}
+.st-Confirmée{color:var(--s-conf);background-color:var(--s-conf-bg)}
+.st-Expédiée{color:var(--s-exp);background-color:var(--s-exp-bg)}
+.st-Livrée{color:var(--s-liv);background-color:var(--s-liv-bg)}
+.st-Annulée{color:var(--s-ann);background-color:var(--s-ann-bg)}
+.row-act{display:flex;gap:.4rem}
+.iconbtn{width:32px;height:32px;border-radius:9px;border:1px solid var(--line);background:var(--paper);display:grid;place-items:center;cursor:pointer;transition:.18s}
+.iconbtn svg{width:16px;height:16px;stroke:#6f685d;fill:none;stroke-width:1.8}
+.iconbtn:hover{border-color:var(--ink)}
+.iconbtn--wa:hover{background:#25d366;border-color:#25d366}
+.iconbtn--wa:hover svg{stroke:#fff}
+.iconbtn--del:hover{background:var(--s-ann-bg);border-color:var(--s-ann)}
+.iconbtn--del:hover svg{stroke:var(--s-ann)}
+.empty{text-align:center;padding:4rem 1rem;color:#9a9384}
+.empty svg{width:46px;height:46px;stroke:#c9c2b3;fill:none;stroke-width:1.4;margin-bottom:1rem}
+.empty a{color:var(--sand-d);font-weight:700;border-bottom:2px solid var(--sand)}
+
+.foot{max-width:1240px;margin:1.5rem auto 2.5rem;padding:0 1rem;font-size:.8rem;color:#9a9384;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+
+/* Mobile cards */
+.m-cards{display:none}
+@media(max-width:860px){
+  .stats{grid-template-columns:1fr 1fr}
+  .panel{display:none}
+  .m-cards{display:flex;flex-direction:column;gap:.9rem}
+  .ocard{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem;box-shadow:var(--shadow-sm)}
+  .ocard__top{display:flex;justify-content:space-between;align-items:start;margin-bottom:.7rem;gap:.6rem}
+  .ocard__top b{font-size:1rem}
+  .ocard__top small{display:block;color:#a59f93;font-size:.74rem}
+  .ocard__row{display:flex;justify-content:space-between;font-size:.86rem;padding:.25rem 0;color:#5f5950}
+  .ocard__row span:first-child{color:#8c857a}
+  .ocard__foot{display:flex;align-items:center;gap:.5rem;margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--line)}
+  .ocard__foot .status{margin-right:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top__in">
+    <img class="top__logo" src="assets/img/Capture_d_ecran_2026-01-29_a_15.24.56-removebg-preview_1e03cafd-f37f-4482-a172-f7a7c50746de.png" alt="Pellmaro" />
+    <div class="top__t"><b>Espace commandes</b><span>Tableau de bord — paiement à la livraison</span></div>
+    <div class="top__right">
+      <a class="top__link" href="index.html">← Voir la boutique</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats" id="stats"></div>
+
+  <div class="toolbar">
+    <div class="search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="search" type="text" placeholder="Rechercher (nom, téléphone, ville, n° commande)…" />
+    </div>
+    <select class="sel" id="filterStatus">
+      <option value="">Tous les statuts</option>
+      <option>Nouvelle</option><option>Confirmée</option><option>Expédiée</option><option>Livrée</option><option>Annulée</option>
+    </select>
+    <button class="btn btn--solid" id="exportBtn">
+      <svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+      Exporter (Excel)
+    </button>
+  </div>
+
+  <div class="panel">
+    <table>
+      <thead><tr>
+        <th>Commande</th><th>Client</th><th>Ville</th><th>Articles</th><th>Total</th><th>Statut</th><th></th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <div class="m-cards" id="mcards"></div>
+</div>
+
+<div style="position:fixed;left:14px;bottom:14px;z-index:65;background:rgba(18,18,18,.8);color:#e8e0ce;font-family:'Barlow',sans-serif;font-weight:700;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;padding:.45rem .85rem;border-radius:100px;border:1px solid rgba(186,173,131,.4);pointer-events:none">Démo · concept</div>
+
+<div class="foot">
+  <span>© 2026 Pellmaro — Espace commandes (démo)</span>
+  <span>Données stockées en local · prêtes à connecter à votre base / Google Sheet</span>
+</div>
+
+<script src="js/admin.js?v=2"></script>
+</body>
+</html>

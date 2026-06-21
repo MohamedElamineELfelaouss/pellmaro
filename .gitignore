@@ -1,0 +1,15 @@
+# Heavy / non-deploy folders
+skill-ref/
+dist/
+brand-assets/
+node_modules/
+.playwright-mcp/
+
+# Stray / generated
+*.csv
+*.log
+.vercel/
+
+# OS
+.DS_Store
+Thumbs.db
