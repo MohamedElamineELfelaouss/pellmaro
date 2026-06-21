@@ -105,7 +105,6 @@ const SIZES = [36,37,38,39,40,41,42,43,44,45,46];
    ig-3 (atelier/fabrication) est mis en avant dans la section Process. */
 const VIDEOS = [
   { src:'assets/video/ig-1.mp4', poster:'assets/video/posters/ig-1.jpg' },
-  { src:'assets/video/ig-2.mp4', poster:'assets/video/posters/ig-2.jpg' },
   { src:'assets/video/hero-1.mp4', poster:'assets/video/posters/hero-1.jpg' },
   { src:'assets/video/hero-2.mp4', poster:'assets/video/posters/hero-2.jpg' },
   { src:'assets/video/hero-3.mp4', poster:'assets/video/posters/hero-3.jpg' },
