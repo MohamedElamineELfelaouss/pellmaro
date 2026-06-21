@@ -56,7 +56,9 @@ $('#instaGrid').innerHTML = INSTAGRAM.posts.map(p=>`
 
 /* ---------- Video reel (lazy <video> from CDN) ---------- */
 $('#reelTrack').innerHTML = VIDEOS.map(v=>`
-  <div class="reel__item"><video src="${v.src}"${v.poster?` poster="${v.poster}"`:''} muted loop playsinline preload="metadata"></video></div>`).join('');
+  <div class="reel__item"><video src="${v.src}"${v.poster?` poster="${v.poster}"`:''} autoplay muted loop playsinline preload="auto"></video></div>`).join('');
+// kick off playback (some mobile browsers need an explicit play() after load)
+$$('.reel__item video').forEach(v=>{ v.play().catch(()=>{}); });
 // play on hover / auto-play when in view
 const reelObs = new IntersectionObserver(es=>es.forEach(e=>{
   const vid = e.target.querySelector('video');

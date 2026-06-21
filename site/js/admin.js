@@ -157,30 +157,39 @@ function _zip(files){
 }
 function buildXlsx(orders){
   const enc=new TextEncoder();
-  const header=['N° commande','Date','Client','Téléphone','Ville','Adresse','Articles','Total (dh)','Statut'];
-  const colLetter=i=>String.fromCharCode(65+i);
-  const row=(r,vals)=>`<row r="${r}">`+vals.map((v,i)=>{
-    const ref=colLetter(i)+r;
-    return (typeof v==='number')
-      ? `<c r="${ref}"><v>${v}</v></c>`
-      : `<c r="${ref}" t="inlineStr"><is><t xml:space="preserve">${xmlEsc(v)}</t></is></c>`;
-  }).join('')+`</row>`;
+  const header=['N° commande','Date','Client','Téléphone','Ville','Adresse','Articles','Total','Statut'];
+  const L=i=>String.fromCharCode(65+i);
+  const statusXf={'Nouvelle':7,'Confirmée':8,'Expédiée':9,'Livrée':10,'Annulée':11};
+  const S=(ref,s,v)=>`<c r="${ref}" s="${s}" t="inlineStr"><is><t xml:space="preserve">${xmlEsc(v)}</t></is></c>`;
+  const N=(ref,s,v)=>`<c r="${ref}" s="${s}"><v>${v}</v></c>`;
 
-  let body = row(1, header);
+  let body = `<row r="1" ht="30" customHeight="1">`+S('A1',1,`Commandes Pellmaro — exporté le ${new Date().toLocaleDateString('fr-FR')}`)+`</row>`;
+  body += `<row r="2" ht="22" customHeight="1">`+header.map((h,i)=>S(L(i)+'2',2,h)).join('')+`</row>`;
   orders.forEach((o,k)=>{
-    body += row(k+2, [o.id, new Date(o.date).toLocaleString('fr-FR'), o.name, o.phone, o.city, o.address, itemsText(o), o.total, o.status]);
+    const r=k+3, z=(k%2===1);
+    const vals=[o.id, new Date(o.date).toLocaleString('fr-FR'), o.name, o.phone, o.city, o.address, itemsText(o), o.total, o.status];
+    body += `<row r="${r}" ht="18" customHeight="1">`+vals.map((v,i)=>{
+      const ref=L(i)+r;
+      if(i===7) return N(ref, z?6:5, o.total);                  // Total (numérique + format dh)
+      if(i===8) return S(ref, statusXf[o.status]||3, o.status); // Statut (cellule colorée)
+      return S(ref, z?4:3, v);
+    }).join('')+`</row>`;
   });
-  const cols='<cols>'+[14,18,22,14,14,26,42,11,12].map((w,i)=>`<col min="${i+1}" max="${i+1}" width="${w}"/>`).join('')+'</cols>';
-  const sheet=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">${cols}<sheetData>${body}</sheetData></worksheet>`;
-  const contentTypes=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>`;
+  const cols='<cols>'+[15,18,22,14,14,26,42,12,13].map((w,i)=>`<col min="${i+1}" max="${i+1}" width="${w}"/>`).join('')+'</cols>';
+  const views='<sheetViews><sheetView workbookViewId="0"><pane ySplit="2" topLeftCell="A3" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>';
+  const merge='<mergeCells count="1"><mergeCell ref="A1:I1"/></mergeCells>';
+  const styles=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><numFmts count="1"><numFmt numFmtId="164" formatCode="#,##0&quot; dh&quot;"/></numFmts><fonts count="9"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="15"/><color rgb="FF1C1A17"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FF1C1A17"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFB9791F"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FF2A6BB0"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FF5B4BB3"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FF2F7D46"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFB23A2F"/><name val="Calibri"/></font></fonts><fills count="9"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF1C1A17"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFF6F3EC"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFFBF0DD"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFE4EEFA"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFEBE8FA"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFE6F4EA"/></patternFill></fill><fill><patternFill patternType="solid"><fgColor rgb="FFFBE7E4"/></patternFill></fill></fills><borders count="2"><border><left/><right/><top/><bottom/><diagonal/></border><border><left style="thin"><color rgb="FFE0DDD4"/></left><right style="thin"><color rgb="FFE0DDD4"/></right><top style="thin"><color rgb="FFE0DDD4"/></top><bottom style="thin"><color rgb="FFE0DDD4"/></bottom><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="12"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment horizontal="left" vertical="center"/></xf><xf numFmtId="0" fontId="2" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment horizontal="left" vertical="center"/></xf><xf numFmtId="0" fontId="0" fillId="3" borderId="1" xfId="0" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="left" vertical="center"/></xf><xf numFmtId="164" fontId="3" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyFont="1" applyBorder="1" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf><xf numFmtId="164" fontId="3" fillId="3" borderId="1" xfId="0" applyNumberFormat="1" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf><xf numFmtId="0" fontId="4" fillId="4" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="0" fontId="5" fillId="5" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="0" fontId="6" fillId="6" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="0" fontId="7" fillId="7" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf><xf numFmtId="0" fontId="8" fillId="8" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`;
+  const sheet=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">${views}${cols}<sheetData>${body}</sheetData>${merge}</worksheet>`;
+  const contentTypes=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>`;
   const rels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`;
   const workbook=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Commandes" sheetId="1" r:id="rId1"/></sheets></workbook>`;
-  const wbRels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>`;
+  const wbRels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`;
   return _zip([
     {name:'[Content_Types].xml', data:enc.encode(contentTypes)},
     {name:'_rels/.rels', data:enc.encode(rels)},
     {name:'xl/workbook.xml', data:enc.encode(workbook)},
     {name:'xl/_rels/workbook.xml.rels', data:enc.encode(wbRels)},
+    {name:'xl/styles.xml', data:enc.encode(styles)},
     {name:'xl/worksheets/sheet1.xml', data:enc.encode(sheet)}
   ]);
 }
