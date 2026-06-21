@@ -75,6 +75,14 @@ if(procVid){
   }),{threshold:.4}).observe(procVid);
 }
 
+/* Bulletproof autoplay: some browsers (e.g. Brave) require a user gesture.
+   On the very first interaction anywhere, force-play every video on the page. */
+function unlockVideos(){
+  $$('video').forEach(v=>{ v.muted=true; const p=v.play(); if(p) p.catch(()=>{}); });
+}
+['pointerdown','touchstart','click','scroll','keydown','wheel'].forEach(ev=>
+  window.addEventListener(ev, unlockVideos, { once:true, passive:true }));
+
 /* ---------- Open / close helpers ---------- */
 const overlay = $('#overlay');
 function openMobile(){ $('#mobileNav').classList.add('open'); overlay.classList.add('show'); }
