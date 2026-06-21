@@ -172,6 +172,16 @@ em{font-style:italic;color:var(--sand-d)}
 .ticks li::before{content:"";position:absolute;left:0;top:.45em;width:11px;height:11px;border-radius:50%;background:var(--sand);box-shadow:0 0 0 4px rgba(186,173,131,.22)}
 .link-arrow{font-weight:700;color:var(--ink);border-bottom:2px solid var(--sand);padding-bottom:2px}
 
+/* ===== Texture band ===== */
+.band{position:relative;min-height:46vh;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden;
+  background-image:var(--bg);background-size:cover;background-position:center;background-attachment:fixed}
+.band__overlay{position:absolute;inset:0;background:linear-gradient(rgba(18,18,18,.48),rgba(18,18,18,.58))}
+.band__inner{position:relative;z-index:2;max-width:40rem;padding:3.5rem clamp(1.2rem,5vw,3rem)}
+.band__inner .eyebrow{color:var(--sand)}
+.band__inner h2{font-size:clamp(2rem,4.6vw,3.2rem);margin:.7rem 0 .8rem}
+.band__inner p{color:#efe9dc;font-size:1.06rem}
+@media(max-width:680px){.band{background-attachment:scroll;min-height:40vh}}
+
 /* ===== Process steps ===== */
 .steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;counter-reset:s}
 .steps li{background:var(--cream);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem 1.3rem;transition:.25s}
